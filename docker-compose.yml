@@ -1,0 +1,20 @@
+version: "3.8"
+
+services: 
+  api:
+    image: node
+    build: .
+    volumes: 
+      - .:/app
+    ports: 
+      - 4000:4000
+    links: 
+      - db
+    environment: 
+      - MONGODB_HOST=db
+      - NODE_ENV=development
+  db:
+    image: mongo
+    logging: 
+      driver: none 
+
